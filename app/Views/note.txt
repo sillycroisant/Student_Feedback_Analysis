@@ -1,0 +1,10 @@
+
+index_home (trang chủ)
+-đăng nhập
+    >client_home = trang của học sinh
+        > điền form đánh giá
+        > đăng xuất
+    >teacher_home = trang của giáo viên
+    >admin_home = trang của quản lý
+
+
