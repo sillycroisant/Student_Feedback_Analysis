@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
+    background-color: white;
 }
 
 .header {
@@ -12,7 +12,8 @@ body {
     border-bottom: 5px solid #007bff;
 }
 .header img {
-    height: 50px;
+    height: 40px;
+    width: 40px;
 }
 .header h1 {
     display: inline;
@@ -29,6 +30,16 @@ footer {
     display: block;
 }
 
+/* Căn đoạn văn bản ra giữa trang */
+#home{
+    width: 50%;
+    margin: auto;
+}
+
+/* Giãn dòng */
+ul.list {
+    line-height: 24px;
+}
 
 /* .nav {
     background-color: #007bff;
@@ -122,7 +133,7 @@ footer {
 }
 .dangnhap form input[type="text"],
 .dangnhap form input[type="password"] {
-    width: 100%;
+    width: 90%;
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #ccc;
@@ -143,7 +154,7 @@ footer {
     background-color: #3b7dd8;
 }
 
-.footer {
+/* .footer {
     background-color: #0056b3;
     color: white;
     padding: 20px 0;
@@ -167,7 +178,7 @@ footer {
 }
 .footer .copyright {
     margin-top: 20px;
-}
+} */
 
 @media (max-width: 768px) {
     .content {
