@@ -1,9 +1,10 @@
+<!DOCTYPE html>
 <html>
 <head>
     <link rel="icon" href="/public/images/Logo.png" type="image/png">
     <title> HHP Feedback Analysis System</title>
     <!-- <link rel="stylesheet" href="/fonts/googleapis.css"> -->
-    <link rel="stylesheet" href="/app/Views/css/trangchu.css">
+    <link rel="stylesheet" href="/app/Views/css/homePage.css">
 
     <style>
       .content-section {
@@ -24,18 +25,19 @@
   <div class="navigation">
     <ul class="nav">
       <li><a href="#"onclick="showSection('home')">Trang chủ</a></li>
-      <li><a href="#"onclick="showSection('calendar')">Lịch khảo sát</a></li>
+      <!-- <li><a href="#"onclick="showSection('calendar')">Lịch khảo sát</a></li> -->
       <li><a href="#"onclick="showSection('login')">Đăng nhập</a></li>
     </ul>
   </div>
   
   <div class="main-content">
+  <!--Chỗ này viết html cho phần "Trang chủ"-->
     <div id="home" class="content-section active trangchu">
-      <img alt="Graduation ceremony with students and faculty members holding certificates and flowers" height="200" src="/public/images/Logo.png" width="800"/>
+      <!-- <img alt="Graduation ceremony with students and faculty members holding certificates and flowers" height="20" src="/public/images/Logo.png" width="80"/> -->
       <div class="text">
         <p> Chào các anh chị sinh viên, học viên, </p>
         <p> Trường Đại học Bách khoa - Đại học Đà Nẵng sử dụng hệ thống khảo sát trực tuyến 
-          <a href="http://FB.dut.udn.vn"> http://FB.dut.udn.vn</a> để khảo sát ý kiến người học:
+          <a href="http://fb.dut.udn.vn"> http://fb.dut.udn.vn</a> để khảo sát ý kiến người học:
         </p>
       
         <ul>
@@ -50,12 +52,14 @@
         <p><strong> TRƯỜNG ĐẠI HỌC BÁCH KHOA - ĐẠI HỌC ĐÀ NẴNG </strong></p>
       </div>
     </div>
+    
+    <!--chỗ này viết html cho phần "Lịch khảo sát"-->
+    <!-- <div id="calendar" class="content-section lichkhaosat">
 
-    <div id="calendar" class="content-section lichkhaosat">
-
-    </div>
+    </div> -->
 
     <div id="login" class="content-section dangnhap">
+    <!--Chỗ này viết html cho phần "Đăng nhập"-->
       <img alt="User Icon" height="100" src="https://storage.googleapis.com/a1aa/image/mGmn3NIRQIpENZv2ElffC1AOFHRU7TIq8KSBaVIpuKkJYt2TA.jpg" width="100"/>
       <form>
         <label> Bạn là sinh viên: </label>
@@ -68,7 +72,7 @@
           
         <br/>
           <label for="password"> Mật khẩu: </label>
-          <input id="password" name="password" type="password"/>
+          <input id="password" name="password" type="password" autocomplete = "off"/>
        
         <br/>
           <input type="submit" value="Đăng nhập"/>
@@ -77,12 +81,12 @@
 
   </div>
 
-  <div class="footer">
-    <div class="contact">
-      <div>
-        <p>Liên hệ</p>
-      </div>
-  </div>
+  <footer>
+    <p>
+      Liên hệ <br>
+      Đại học Bách Khoa - Đại học Đà Nẵng
+    </p>
+  </footer>
 
   <script src="/app/Views/js/script.js"></script>
 
