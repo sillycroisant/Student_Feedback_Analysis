@@ -1,9 +1,10 @@
+<!DOCTYPE html>
 <html>
 <head>
     <link rel="icon" href="/public/images/Logo.png" type="image/png">
     <title> HHP Feedback Analysis System</title>
     <!-- <link rel="stylesheet" href="/fonts/googleapis.css"> -->
-    <link rel="stylesheet" href="/app/Views/css/trangchu.css">
+    <link rel="stylesheet" href="/app/Views/css/homePage.css">
 
     <style>
       .content-section {
@@ -24,51 +25,55 @@
   <div class="navigation">
     <ul class="nav">
       <li><a href="#"onclick="showSection('home')">Trang chủ</a></li>
-      <li><a href="#"onclick="showSection('calendar')">Lịch khảo sát</a></li>
+      <!-- <li><a href="#"onclick="showSection('calendar')">Lịch khảo sát</a></li> -->
       <li><a href="#"onclick="showSection('login')">Đăng nhập</a></li>
     </ul>
   </div>
   
   <div class="main-content">
+  <!--Chỗ này viết html cho phần "Trang chủ"-->
     <div id="home" class="content-section active trangchu">
-      <img alt="Graduation ceremony with students and faculty members holding certificates and flowers" height="200" src="/public/images/Logo.png" width="800"/>
+      <!-- <img alt="Graduation ceremony with students and faculty members holding certificates and flowers" height="20" src="/public/images/Logo.png" width="80"/> -->
       <div class="text">
-        <p> Chào các anh chị sinh viên, học viên, </p>
+        <p> <strong>Chào các anh chị sinh viên, học viên,</strong></p>
         <p> Trường Đại học Bách khoa - Đại học Đà Nẵng sử dụng hệ thống khảo sát trực tuyến 
-          <a href="http://FB.dut.udn.vn"> http://FB.dut.udn.vn</a> để khảo sát ý kiến người học:
+          <a href="http://fb.dut.udn.vn"> http://fb.dut.udn.vn</a> để khảo sát ý kiến người học:
         </p>
       
-        <ul>
-          <li> Về lớp học phần. Khảo sát này được thực hiện mỗi học kỳ, đối với một số lớp học phần được chọn. Tất cả anh chị sinh viên trong lớp cần tham gia khảo sát. </li>
-          <li> Về khóa học. Khảo sát này được thực hiện đối với sinh viên làm Đồ án tốt nghiệp. Tất cả anh chị sinh viên làm Đồ án tốt nghiệp cần tham gia khảo sát. </li>
-          <li> Về hoạt động học tập của người học. Khảo sát này được thực hiện một lần mỗi năm học. Nhà trường khuyến khích các anh chị tham gia; </li>
-          <li> Về công tác tuyển sinh. Khảo sát này được thực hiện một lần mỗi năm học. Bắt đầu thực hiện năm 2019. </li>
-          <li> Về tình hình việc làm sau tốt nghiệp. Khảo sát này được thực hiện đối với sinh viên, học viên về Trường đăng ký dự Lễ trao bằng tốt nghiệp. </li>
+        <ul class = "list">
+          <li> <strong>Về lớp học phần.</strong> Khảo sát này được thực hiện mỗi học kỳ, đối với một số lớp học phần được chọn. Tất cả anh chị sinh viên trong lớp cần tham gia khảo sát. </li>
+          <li> <strong>Về khóa học.</strong> Khảo sát này được thực hiện đối với sinh viên làm Đồ án tốt nghiệp. Tất cả anh chị sinh viên làm Đồ án tốt nghiệp cần tham gia khảo sát. </li>
+          <li> <strong>Về hoạt động học tập của người học</strong>. Khảo sát này được thực hiện một lần mỗi năm học. Nhà trường khuyến khích các anh chị tham gia; </li>
+          <li> <strong>Về công tác tuyển sinh.</strong> Khảo sát này được thực hiện một lần mỗi năm học. Bắt đầu thực hiện năm 2019. </li>
+          <li> <strong>Về tình hình việc làm sau tốt nghiệp.</strong> Khảo sát này được thực hiện đối với sinh viên, học viên về Trường đăng ký dự Lễ trao bằng tốt nghiệp. </li>
         </ul>
       
         <p> Nhà trường rất mong các anh chị sinh viên, học viên, cựu sinh viên, học viên cùng các khách quan. Cảm ơn các anh chị đã và điều kiện hợp tác để Nhà trường cải tiến các hoạt động và quản lý của Trường để nâng lại chất lượng đào tạo ngày tốt hơn cho người học. </p>
         <p><strong> TRƯỜNG ĐẠI HỌC BÁCH KHOA - ĐẠI HỌC ĐÀ NẴNG </strong></p>
       </div>
     </div>
+    
+    <!--chỗ này viết html cho phần "Lịch khảo sát"-->
+    <!-- <div id="calendar" class="content-section lichkhaosat">
 
-    <div id="calendar" class="content-section lichkhaosat">
-
-    </div>
+    </div> -->
 
     <div id="login" class="content-section dangnhap">
-      <img alt="User Icon" height="100" src="https://storage.googleapis.com/a1aa/image/mGmn3NIRQIpENZv2ElffC1AOFHRU7TIq8KSBaVIpuKkJYt2TA.jpg" width="100"/>
+    <!--Chỗ này viết html cho phần "Đăng nhập"-->
+      <img alt="User Icon" height="100" src="/public/images/login.png" width="100"/>
       <form>
         <label> Bạn là sinh viên: </label>
         <input checked="" name="student_status" type="radio" value="current"/> Đang còn học
         <input name="student_status" type="radio" value="graduate"/> Đã tốt nghiệp
 
         <br/>
+        <br>
           <label for="username"> Tài Khoản: </label>
           <input id="username" name="username" type="text"/>
           
         <br/>
           <label for="password"> Mật khẩu: </label>
-          <input id="password" name="password" type="password"/>
+          <input id="password" name="password" type="password" autocomplete = "off"/>
        
         <br/>
           <input type="submit" value="Đăng nhập"/>
@@ -77,13 +82,14 @@
 
   </div>
 
-  <div class="footer">
-    <div class="contact">
-      <div>
-        <p>Liên hệ</p>
-      </div>
-  </div>
+  <footer>
+    <p>
+      Liên hệ <br>
+      Đại học Bách Khoa - Đại học Đà Nẵng
+    </p>
+  </footer>
 
+  <!-- Chỗ import code javascript -->
   <script src="/app/Views/js/script.js"></script>
 
 </body>
