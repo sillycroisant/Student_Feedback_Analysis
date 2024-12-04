@@ -38,7 +38,7 @@ footer {
 
 /* Giãn dòng */
 ul.list {
-    line-height: 24px;
+    line-height: 20px;
 }
 
 /* .nav {
@@ -58,7 +58,7 @@ ul.list {
     color: white;
     padding: 15px;
     text-align: center;
-    /* position: sticky; */
+    position: sticky; 
     top: 0;
     z-index: 100;
 }
@@ -72,7 +72,7 @@ ul.list {
 }
 
 .nav li {
-    margin-right: 20px;
+    margin-right: 50px;
 }
 
 .nav li a {
@@ -84,7 +84,7 @@ ul.list {
 }
 
 .nav li a:hover {
-    color: #37d142;
+    color: black;
 }
 
 .trangchu {
@@ -92,11 +92,13 @@ ul.list {
     justify-content: center;
     padding: 20px;
 }
+
 .trangchu img {
     max-width: 100%;
     height: auto;
     border: 1px solid #ccc;
 }
+
 .trangchu .text {
     background-color: white;
     padding: 20px;
@@ -142,7 +144,7 @@ ul.list {
 .dangnhap form input[type="radio"] {
     margin-right: 5px;
 }
-.dangnhap form input[type="submit"] {
+.dangnhap form button[type="submit"] {
     background-color: #4a90e2;
     color: white;
     padding: 10px 20px;
@@ -150,9 +152,23 @@ ul.list {
     border-radius: 5px;
     cursor: pointer;
 }
-.dangnhap form input[type="submit"]:hover {
+.dangnhap form button[type="submit"]:hover {
     background-color: #3b7dd8;
 }
+
+/* 
+.button {
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+} */
 
 /* .footer {
     background-color: #0056b3;
