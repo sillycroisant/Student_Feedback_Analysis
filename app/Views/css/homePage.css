@@ -116,7 +116,6 @@ ul.list {
     text-decoration: none;
 }
 
-
 .dangnhap {
     text-align: center;
     padding: 20px;
@@ -205,4 +204,11 @@ ul.list {
         margin-left: 0;
         margin-top: 20px;
     }
+}
+
+.content-section {
+    display: none; /* Ẩn các phần mặc định */
+}
+.content-section.active {
+    display: block; /* Hiển thị phần có lớp 'active' */
 }

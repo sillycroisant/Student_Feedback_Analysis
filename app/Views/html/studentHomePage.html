@@ -10,14 +10,14 @@
         <div class="header">
             <img alt="Logo" height="50" src="/public/images/Logo.png" width="50"/>
             <h1> HỆ THỐNG PHÂN TÍCH PHẢN HỒI NGƯỜI HỌC </h1>
-          </div>
+        </div>
         
           <div class="navigation">
             <ul class="nav">
               <li><a href="#"onclick="showSection('home')">Trang chủ</a></li>
               <!-- <li><a href="#"onclick="showSection('calendar')">Lịch khảo sát</a></li> -->
               <li><a href="#"onclick="showSection('survey')">Thực hiện khảo sát</a></li>
-              <li><a href="#" onclick="showSection('result')">Kết quả khảo sát</a></li>
+              <!-- <li><a href="#" onclick="showSection('result')">Kết quả khảo sát</a></li> -->
               <li><a>Chào <var>username</var> (<var>mssv</var>)</a></li>
               <!-- dòng phía trên hiển thị tên và mssv dựa vào thông tin đăng nhập -->
               <li><a href="#" onclick="showSection('logout')">Đăng xuất</a></li>
@@ -29,23 +29,64 @@
             <!--Chỗ này viết html cho phần "Trang chủ"-->
             <div id="student-home" class="content-section active trangchu">
             <!-- <img alt="Graduation ceremony with students and faculty members holding certificates and flowers" height="20" src="/public/images/Logo.png" width="80"/> -->
-            <div class="text">
-                <p> <strong>Chào các anh chị sinh viên, học viên,</strong></p>
-                <p> Trường Đại học Bách khoa - Đại học Đà Nẵng sử dụng hệ thống khảo sát trực tuyến 
-                <a href="http://fb.dut.udn.vn"> http://fb.dut.udn.vn</a> để khảo sát ý kiến người học:
-                </p>
-            
-                <ul class = "list">
-                <li> <strong>Về lớp học phần.</strong> Khảo sát này được thực hiện mỗi học kỳ, đối với một số lớp học phần được chọn. Tất cả anh chị sinh viên trong lớp cần tham gia khảo sát. </li>
-                <li> <strong>Về khóa học.</strong> Khảo sát này được thực hiện đối với sinh viên làm Đồ án tốt nghiệp. Tất cả anh chị sinh viên làm Đồ án tốt nghiệp cần tham gia khảo sát. </li>
-                <li> <strong>Về hoạt động học tập của người học</strong>. Khảo sát này được thực hiện một lần mỗi năm học. Nhà trường khuyến khích các anh chị tham gia; </li>
-                <li> <strong>Về công tác tuyển sinh.</strong> Khảo sát này được thực hiện một lần mỗi năm học. Bắt đầu thực hiện năm 2019. </li>
-                <li> <strong>Về tình hình việc làm sau tốt nghiệp.</strong> Khảo sát này được thực hiện đối với sinh viên, học viên về Trường đăng ký dự Lễ trao bằng tốt nghiệp. </li>
-                </ul>
-            
-                <p> Nhà trường rất mong các anh chị sinh viên, học viên, cựu sinh viên, học viên cùng các khách quan. Cảm ơn các anh chị đã và điều kiện hợp tác để Nhà trường cải tiến các hoạt động và quản lý của Trường để nâng lại chất lượng đào tạo ngày tốt hơn cho người học. </p>
-                <p><strong> TRƯỜNG ĐẠI HỌC BÁCH KHOA - ĐẠI HỌC ĐÀ NẴNG </strong></p>
+              <div class="text">
+                  <p> <strong>Chào các anh chị sinh viên, học viên,</strong></p>
+                  <p> Trường Đại học Bách khoa - Đại học Đà Nẵng sử dụng hệ thống khảo sát trực tuyến 
+                  <a href="http://fb.dut.udn.vn"> http://fb.dut.udn.vn</a> để khảo sát ý kiến người học:
+                  </p>
+              
+                  <ul class = "list">
+                  <li> <strong>Về lớp học phần.</strong> Khảo sát này được thực hiện mỗi học kỳ, đối với một số lớp học phần được chọn. Tất cả anh chị sinh viên trong lớp cần tham gia khảo sát. </li>
+                  <li> <strong>Về khóa học.</strong> Khảo sát này được thực hiện đối với sinh viên làm Đồ án tốt nghiệp. Tất cả anh chị sinh viên làm Đồ án tốt nghiệp cần tham gia khảo sát. </li>
+                  <li> <strong>Về hoạt động học tập của người học</strong>. Khảo sát này được thực hiện một lần mỗi năm học. Nhà trường khuyến khích các anh chị tham gia; </li>
+                  <li> <strong>Về công tác tuyển sinh.</strong> Khảo sát này được thực hiện một lần mỗi năm học. Bắt đầu thực hiện năm 2019. </li>
+                  <li> <strong>Về tình hình việc làm sau tốt nghiệp.</strong> Khảo sát này được thực hiện đối với sinh viên, học viên về Trường đăng ký dự Lễ trao bằng tốt nghiệp. </li>
+                  </ul>
+              
+                  <p> Nhà trường rất mong các anh chị sinh viên, học viên, cựu sinh viên, học viên cùng các khách quan. Cảm ơn các anh chị đã và điều kiện hợp tác để Nhà trường cải tiến các hoạt động và quản lý của Trường để nâng lại chất lượng đào tạo ngày tốt hơn cho người học. </p>
+                  <p><strong> TRƯỜNG ĐẠI HỌC BÁCH KHOA - ĐẠI HỌC ĐÀ NẴNG </strong></p>
+              </div>
             </div>
+
+            <!-- trang thực hiện khảo sát -->
+            <div id = "survey" class = "content-section khaosat">
+              <table class = "khaosat" style="width:80%">
+                <tr>
+                  <th>Số thứ tự</th>
+                  <th>Tên học phần</th>
+                  <th>Số tín chỉ</th>
+                  <th>Giảng viên</th>
+                  <th>Đã học</th>
+                  <th>Đã khảo sát</th>
+                </tr>
+
+                <tr>
+                  <td>1</td>
+                  <td>Toán chuyên ngành</td>
+
+                </tr>
+
+                <tr>
+                  <td>2</td>
+                  <td>Tư tưởng Hồ Chí Minh</td>
+
+                </tr>
+
+                <tr>
+                  <td>3</td>
+                  <td>Vật lý 2</td>
+                </tr>
+              </table>
+            </div>
+
+            <!-- kết quả khảo sát -->
+            <!-- <div id = "result" class = " ">
+
+            </div> -->
+
+            <!-- đăng xuất -> quay trở lại trang chủ -->
+            <div id = "logout" class = " ">
+
             </div>
     </body>
 
@@ -55,4 +96,6 @@
           Đại học Bách Khoa - Đại học Đà Nẵng
         </p>
     </footer>
+
+    <script src="/app/Views/js/script.js"></script>
 </html>
