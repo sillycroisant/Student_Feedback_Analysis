@@ -137,7 +137,7 @@ ul.list {
     width: 90%;
     padding: 10px;
     margin: 10px 0;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
     border-radius: 5px;
 }
 .dangnhap form input[type="radio"] {
