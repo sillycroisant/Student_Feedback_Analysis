@@ -1,3 +1,6 @@
+# import os.path giúp lấy đường dẫn để lưu dữ liệu
+import os
+
 class Question:
     def __init__(self, text):
         self.text = text  # Câu hỏi
@@ -57,7 +60,11 @@ def create_form(subject):
 # Lưu dữ liệu vào file
 def save_to_file(subjects, file_name):
     try:
-        with open(file_name, 'w', encoding='utf-8') as file:
+        # Xác định đường dẫn đầy đủ đến file data.txt
+        current_dir = os.path.dirname(os.path.abspath(__file__))  # Thư mục chứa CreateForm.py
+        file_path = os.path.join(current_dir, file_name)  # Ghép đường dẫn đầy đủ
+
+        with open(file_path, 'w', encoding='utf-8') as file:
             for subject in subjects:
                 file.write(f"Môn học: {subject.name}\n")
                 file.write(f"Kiểu đánh giá: {subject.rating_type}\n")
