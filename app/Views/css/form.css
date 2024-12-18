@@ -1,0 +1,92 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+.header {
+    background-color: white;
+    padding: 10px 0;
+    text-align: center;
+    border-bottom: 5px solid #007bff;
+}
+.header img {
+    vertical-align: middle;
+}
+.header h1 {
+    display: inline-block;
+    font-size: 24px;
+    color: #007bff;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.navigation {
+    background-color: #2865FF;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    position: sticky; 
+    top: 0;
+    z-index: 100;
+}
+
+.nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    /* justify-content: center; */
+}
+
+.nav li {
+    margin-right: 50px;
+}
+
+.nav li a {
+    color: white;
+    text-decoration: none;
+    padding: 0 50px;
+    font-weight: bold;
+    line-height: 30px;
+}
+
+.nav li a:hover {
+    color: black;
+}
+
+#survey{
+    width: 300px;
+    margin: 50px;
+    padding: 20px;
+    border: 2px solid #007bff;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+#survey label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+#survey div{
+    margin-top: 10px;
+}
+
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #e9ecef;
+}
+footer {
+    text-align: center;
+    padding: 5px;
+    background-color: #007bff;
+    color: white;
+    display: block;
+}
