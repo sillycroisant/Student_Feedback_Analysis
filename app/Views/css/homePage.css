@@ -142,6 +142,10 @@ ul.list {
 .dangnhap form button[type="submit"]:hover {
     background-color: #3b7dd8;
 }
+.dangnhap form button a {
+    text-decoration: none;
+    color: white;
+}
 
 /* 
 .button {
