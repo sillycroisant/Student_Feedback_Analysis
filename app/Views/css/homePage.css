@@ -12,14 +12,14 @@ body {
     border-bottom: 5px solid #007bff;
 }
 .header img {
-    height: 40px;
-    width: 40px;
+    vertical-align: middle;
 }
 .header h1 {
-    display: inline;
+    display: inline-block;
     font-size: 24px;
     color: #007bff;
     margin-left: 10px;
+    vertical-align: middle;
 }
 
 footer {
@@ -40,18 +40,6 @@ footer {
 ul.list {
     line-height: 20px;
 }
-
-/* .nav {
-    background-color: #007bff;
-    padding: 10px 0;
-    text-align: center;
-}
-.nav a {
-    color: white;
-    margin: 0 15px;
-    text-decoration: none;
-    font-size: 16px;
-} */
 
 .navigation {
     background-color: #2865FF;
