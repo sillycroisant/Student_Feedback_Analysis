@@ -29,6 +29,13 @@ body {
     vertical-align: middle;
 }
 
+.content-section {
+    display: none;
+}
+.content-section.active {
+    display: block;
+}
+
 /* Căn đoạn văn bản ra giữa trang */
 #home{
     width: 50%;

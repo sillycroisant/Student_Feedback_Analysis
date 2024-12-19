@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 19, 2024 lúc 02:28 PM
--- Phiên bản máy phục vụ: 10.4.32-MariaDB
--- Phiên bản PHP: 8.1.25
+-- Host: 127.0.0.1
+-- Generation Time: Dec 19, 2024 at 03:31 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.1.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `student_feedback_analysis`
+-- Database: `student_feedback_analysis`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `question`
+-- Table structure for table `question`
 --
 
 CREATE TABLE `question` (
@@ -43,7 +43,7 @@ CREATE TABLE `question` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `question`
+-- Dumping data for table `question`
 --
 
 INSERT INTO `question` (`idtoconnect`, `q1`, `q2`, `q3`, `q4`, `q5`, `q6`, `q7`, `q8`, `q9`, `q10`, `created_at`) VALUES
@@ -52,32 +52,31 @@ INSERT INTO `question` (`idtoconnect`, `q1`, `q2`, `q3`, `q4`, `q5`, `q6`, `q7`,
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `result`
+-- Table structure for table `result`
 --
 
 CREATE TABLE `result` (
-  `idtoconnect` int(11) NOT NULL,
-  `teacher` varchar(255) NOT NULL,
-  `subject` varchar(255) NOT NULL,
-  `assessor` varchar(255) NOT NULL,
-  `q1` varchar(255) NOT NULL,
-  `q2` varchar(255) NOT NULL,
-  `q3` varchar(255) NOT NULL,
-  `q4` varchar(255) NOT NULL,
-  `q5` varchar(255) NOT NULL,
-  `q6` varchar(255) NOT NULL,
-  `q7` varchar(255) NOT NULL,
-  `q8` varchar(255) NOT NULL,
-  `q9` varchar(255) NOT NULL,
-  `q10` varchar(255) NOT NULL,
-  `votetype` enum('hoàn toàn không đồng ý','không đồng ý','không ý kiến','đồng ý','hoàn toàn đồng ý') NOT NULL,
+  `id` int(11) NOT NULL,
+  `ten_giang_vien` varchar(255) NOT NULL,
+  `ten_hoc_phan` varchar(255) NOT NULL,
+  `nguoi_danh_gia` varchar(255) NOT NULL,
+  `cau_hoi_1` int(11) NOT NULL CHECK (`cau_hoi_1` between 1 and 5),
+  `cau_hoi_2` int(11) NOT NULL CHECK (`cau_hoi_2` between 1 and 5),
+  `cau_hoi_3` int(11) NOT NULL CHECK (`cau_hoi_3` between 1 and 5),
+  `cau_hoi_4` int(11) NOT NULL CHECK (`cau_hoi_4` between 1 and 5),
+  `cau_hoi_5` int(11) NOT NULL CHECK (`cau_hoi_5` between 1 and 5),
+  `cau_hoi_6` int(11) NOT NULL CHECK (`cau_hoi_6` between 1 and 5),
+  `cau_hoi_7` int(11) NOT NULL CHECK (`cau_hoi_7` between 1 and 5),
+  `cau_hoi_8` int(11) NOT NULL CHECK (`cau_hoi_8` between 1 and 5),
+  `cau_hoi_9` int(11) NOT NULL CHECK (`cau_hoi_9` between 1 and 5),
+  `cau_hoi_10` int(11) NOT NULL CHECK (`cau_hoi_10` between 1 and 5),
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `student`
+-- Table structure for table `student`
 --
 
 CREATE TABLE `student` (
@@ -89,7 +88,7 @@ CREATE TABLE `student` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `student`
+-- Dumping data for table `student`
 --
 
 INSERT INTO `student` (`id`, `full_name`, `username`, `password`, `created_at`) VALUES
@@ -100,7 +99,7 @@ INSERT INTO `student` (`id`, `full_name`, `username`, `password`, `created_at`) 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `teacher`
+-- Table structure for table `teacher`
 --
 
 CREATE TABLE `teacher` (
@@ -113,7 +112,7 @@ CREATE TABLE `teacher` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `teacher`
+-- Dumping data for table `teacher`
 --
 
 INSERT INTO `teacher` (`id`, `full_name`, `subject`, `username`, `password`, `created_at`) VALUES
@@ -122,48 +121,54 @@ INSERT INTO `teacher` (`id`, `full_name`, `subject`, `username`, `password`, `cr
 (3, 'giảng viên 3', 'Calculus,Physics,English', 'giangvien3', 'giangvien3', '2024-12-19 03:08:18');
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `question`
+-- Indexes for table `question`
 --
 ALTER TABLE `question`
   ADD PRIMARY KEY (`idtoconnect`);
 
 --
--- Chỉ mục cho bảng `result`
+-- Indexes for table `result`
 --
 ALTER TABLE `result`
-  ADD PRIMARY KEY (`idtoconnect`),
-  ADD UNIQUE KEY `teacher` (`teacher`);
+  ADD PRIMARY KEY (`id`);
+  ADD UNIQUE KEY `ten_giang_vien` (`ten_giang_vien`);
 
 --
--- Chỉ mục cho bảng `student`
+-- Indexes for table `student`
 --
 ALTER TABLE `student`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username` (`username`);
 
 --
--- Chỉ mục cho bảng `teacher`
+-- Indexes for table `teacher`
 --
 ALTER TABLE `teacher`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username` (`username`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `student`
+-- AUTO_INCREMENT for table `result`
+--
+ALTER TABLE `result`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT cho bảng `teacher`
+-- AUTO_INCREMENT for table `teacher`
 --
 ALTER TABLE `teacher`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
