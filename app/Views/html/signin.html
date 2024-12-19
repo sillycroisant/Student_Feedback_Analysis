@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập - HHP Feedback Analysis System</title>
+    <link rel="icon" href="../public/images/Logo.png" type="image/png">
+    <link rel="stylesheet" href="../app/Views/css/homePage.css"> 
+    
+</head>
+<body>
+    <div class="header">
+        <img alt="Logo" height="50" src="../public/images/Logo.png" width="50" />
+        <h1> HỆ THỐNG PHÂN TÍCH PHẢN HỒI NGƯỜI HỌC </h1>
+    </div>
+
+    <div class="navigation">
+        <ul class="nav">
+            <li><a href="index.html">Trang chủ</a></li>
+            <!-- <li><a href="#" onclick="showSection('calendar')">Lịch khảo sát</a></li> -->
+            <li><a href="#" onclick="showSection('login')">Đăng nhập</a></li>
+        </ul>
+    </div>
+
+    <div id="login" class="dangnhap">
+        <img alt="User Icon" height="100" src="../public/images/login.png" width="100" />
+        <form action="signin.php" method="POST">
+            <div class="form-group">
+                <label for="username"> Tài khoản </label>
+                <input id="username" name="username" placeholder="Tài khoản của bạn" type="text" required/>
+            </div>
+            <div class="form-group">
+                <label for="password"> Mật khẩu </label>
+                <input id="password" name="password" placeholder="Mật khẩu của bạn" type="password" required/>
+            </div>
+            <div class="button-container">
+                <button class="btn btn-dangnhap" type="submit">Đăng nhập</button>
+            </div>
+        </form>
+    </div>
+
+    <footer>
+        <p>
+            Liên hệ
+        </p>
+    </footer>
+</body>
+</html>
