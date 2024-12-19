@@ -1,143 +1,174 @@
-<?php
-include 'db_account.php'; // Kết nối cơ sở dữ liệu
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th12 19, 2024 lúc 02:28 PM
+-- Phiên bản máy phục vụ: 10.4.32-MariaDB
+-- Phiên bản PHP: 8.1.25
 
-session_start();
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
 
-// Truy vấn câu hỏi từ bảng `question`
-$query = "SELECT * FROM question WHERE idtoconnect = 1"; // Giả sử chỉ sử dụng câu hỏi có `idtoconnect = 1`
-$stmt = $pdo->prepare($query);
-$stmt->execute();
-$questionData = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if (!$questionData) {
-    die("Không tìm thấy câu hỏi trong cơ sở dữ liệu.");
-}
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
-// Nếu form được gửi đi
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $assessor = htmlspecialchars($_POST['assessor']); // Người đánh giá
-    $votetype = htmlspecialchars($_POST['votetype']); // Loại đánh giá tổng thể
+--
+-- Cơ sở dữ liệu: `student_feedback_analysis`
+--
 
-    // Tạo câu truy vấn INSERT
-    $insert_query = "INSERT INTO result (idtoconnect, teacher, subject, assessor, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, votetype) 
-                     VALUES (:idtoconnect, :teacher, :subject, :assessor, :q1, :q2, :q3, :q4, :q5, :q6, :q7, :q8, :q9, :q10, :votetype)";
-    $insert_stmt = $pdo->prepare($insert_query);
+-- --------------------------------------------------------
 
-    // Gắn tham số
-    $insert_stmt->bindParam(':idtoconnect', $questionData['idtoconnect']);
-    $insert_stmt->bindParam(':teacher', $_POST['teacher']);
-    $insert_stmt->bindParam(':subject', $_POST['subject']);
-    $insert_stmt->bindParam(':assessor', $assessor);
-    for ($i = 1; $i <= 10; $i++) {
-        $insert_stmt->bindParam(":q$i", $_POST["q$i"]);
-    }
-    $insert_stmt->bindParam(':votetype', $votetype);
+--
+-- Cấu trúc bảng cho bảng `question`
+--
 
-    // Thực thi truy vấn
-    if ($insert_stmt->execute()) {
-        echo "<script>alert('Đánh giá của bạn đã được lưu!'); window.location='thank_you.php';</script>";
-        exit;
-    } else {
-        die("Lỗi khi lưu đánh giá: " . implode(", ", $insert_stmt->errorInfo()));
-    }
-}
-?>
+CREATE TABLE `question` (
+  `idtoconnect` int(11) NOT NULL,
+  `q1` varchar(255) NOT NULL,
+  `q2` varchar(255) NOT NULL,
+  `q3` varchar(255) NOT NULL,
+  `q4` varchar(255) NOT NULL,
+  `q5` varchar(255) NOT NULL,
+  `q6` varchar(255) NOT NULL,
+  `q7` varchar(255) NOT NULL,
+  `q8` varchar(255) NOT NULL,
+  `q9` varchar(255) NOT NULL,
+  `q10` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đánh Giá</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        h2 {
-            text-align: center;
-            color: #333;
-        }
-        .question {
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            font-size: 14px;
-            margin-bottom: 10px;
-            color: #555;
-        }
-        select, input {
-            width: 100%;
-            padding: 8px;
-            font-size: 14px;
-            margin-top: 5px;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            background: #28a745;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background: #218838;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h2>Đánh Giá Giảng Viên</h2>
-        <form method="POST">
-            <label for="teacher">Tên giảng viên</label>
-            <input type="text" id="teacher" name="teacher" required>
+--
+-- Đang đổ dữ liệu cho bảng `question`
+--
 
-            <label for="subject">Môn học</label>
-            <input type="text" id="subject" name="subject" required>
+INSERT INTO `question` (`idtoconnect`, `q1`, `q2`, `q3`, `q4`, `q5`, `q6`, `q7`, `q8`, `q9`, `q10`, `created_at`) VALUES
+(1, 'Nội dung môn học có rõ ràng và được trình bày một cách logic không?', 'Khối lượng bài giảng có phù hợp với thời lượng của môn học không?', 'Mức độ hữu ích của môn học đối với kiến thức và kỹ năng thực tế của bạn như thế nào?', 'Tài liệu học tập (giáo trình, tài liệu tham khảo, bài giảng) có đáp ứng nhu cầu học tập của bạn không?', 'Môn học có tạo động lực học tập và nghiên cứu thêm không?', 'Giảng viên có trình bày bài giảng một cách dễ hiểu và mạch lạc không?', 'Giảng viên có sử dụng các phương pháp giảng dạy sáng tạo và hấp dẫn không?', 'Giảng viên có hỗ trợ và giải đáp thắc mắc của sinh viên hiệu quả không?', 'Thái độ và tác phong giảng dạy của giảng viên có chuyên nghiệp và thân thiện không?', 'Mức độ hài lòng tổng thể của bạn đối với giảng viên của môn học này là bao nhiêu?', '2024-12-19 12:58:38');
 
-            <label for="assessor">Người đánh giá</label>
-            <input type="text" id="assessor" name="assessor" required>
+-- --------------------------------------------------------
 
-            <?php for ($i = 1; $i <= 10; $i++) { ?>
-                <div class="question">
-                    <label for="q<?php echo $i; ?>">
-                        <?php echo $questionData["q$i"]; ?>
-                    </label>
-                    <select name="q<?php echo $i; ?>" id="q<?php echo $i; ?>" required>
-                        <option value="">Chọn đánh giá</option>
-                        <option value="hoàn toàn không đồng ý">Hoàn toàn không đồng ý</option>
-                        <option value="không đồng ý">Không đồng ý</option>
-                        <option value="không ý kiến">Không ý kiến</option>
-                        <option value="đồng ý">Đồng ý</option>
-                        <option value="hoàn toàn đồng ý">Hoàn toàn đồng ý</option>
-                    </select>
-                </div>
-            <?php } ?>
+--
+-- Cấu trúc bảng cho bảng `result`
+--
 
-            <label for="votetype">Đánh giá tổng thể</label>
-            <select name="votetype" id="votetype" required>
-                <option value="">Chọn đánh giá</option>
-                <option value="hoàn toàn không đồng ý">Hoàn toàn không đồng ý</option>
-                <option value="không đồng ý">Không đồng ý</option>
-                <option value="không ý kiến">Không ý kiến</option>
-                <option value="đồng ý">Đồng ý</option>
-                <option value="hoàn toàn đồng ý">Hoàn toàn đồng ý</option>
-            </select>
+CREATE TABLE `result` (
+  `idtoconnect` int(11) NOT NULL,
+  `teacher` varchar(255) NOT NULL,
+  `subject` varchar(255) NOT NULL,
+  `assessor` varchar(255) NOT NULL,
+  `q1` varchar(255) NOT NULL,
+  `q2` varchar(255) NOT NULL,
+  `q3` varchar(255) NOT NULL,
+  `q4` varchar(255) NOT NULL,
+  `q5` varchar(255) NOT NULL,
+  `q6` varchar(255) NOT NULL,
+  `q7` varchar(255) NOT NULL,
+  `q8` varchar(255) NOT NULL,
+  `q9` varchar(255) NOT NULL,
+  `q10` varchar(255) NOT NULL,
+  `votetype` enum('hoàn toàn không đồng ý','không đồng ý','không ý kiến','đồng ý','hoàn toàn đồng ý') NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-            <button type="submit">Gửi Đánh Giá</button>
-        </form>
-    </div>
-</body>
-</html>
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `student`
+--
+
+CREATE TABLE `student` (
+  `id` int(11) NOT NULL,
+  `full_name` varchar(255) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `student`
+--
+
+INSERT INTO `student` (`id`, `full_name`, `username`, `password`, `created_at`) VALUES
+(1, 'Trần Đức Phát', 'tranducphat', 'tranducphat', '2024-12-19 03:13:49'),
+(2, 'Lê Quang Hoàng', 'lequanghoang', 'lequanghoang', '2024-12-19 03:16:26'),
+(3, 'Nguyễn Văn Huy', 'nguyenvanhuy', 'nguyenvanhuy', '2024-12-19 03:16:26');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `teacher`
+--
+
+CREATE TABLE `teacher` (
+  `id` int(11) NOT NULL,
+  `full_name` varchar(100) NOT NULL,
+  `subject` set('Calculus','Physics','English') DEFAULT 'Calculus',
+  `username` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `teacher`
+--
+
+INSERT INTO `teacher` (`id`, `full_name`, `subject`, `username`, `password`, `created_at`) VALUES
+(1, 'giảng viên 1', 'Calculus', 'giangvien1', 'giangvien1', '2024-12-19 02:41:56'),
+(2, 'giảng viên 2', 'Calculus,Physics', 'giangvien2', 'giangvien2', '2024-12-19 02:44:11'),
+(3, 'giảng viên 3', 'Calculus,Physics,English', 'giangvien3', 'giangvien3', '2024-12-19 03:08:18');
+
+--
+-- Chỉ mục cho các bảng đã đổ
+--
+
+--
+-- Chỉ mục cho bảng `question`
+--
+ALTER TABLE `question`
+  ADD PRIMARY KEY (`idtoconnect`);
+
+--
+-- Chỉ mục cho bảng `result`
+--
+ALTER TABLE `result`
+  ADD PRIMARY KEY (`idtoconnect`),
+  ADD UNIQUE KEY `teacher` (`teacher`);
+
+--
+-- Chỉ mục cho bảng `student`
+--
+ALTER TABLE `student`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
+-- Chỉ mục cho bảng `teacher`
+--
+ALTER TABLE `teacher`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
+-- AUTO_INCREMENT cho các bảng đã đổ
+--
+
+--
+-- AUTO_INCREMENT cho bảng `student`
+--
+ALTER TABLE `student`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT cho bảng `teacher`
+--
+ALTER TABLE `teacher`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
