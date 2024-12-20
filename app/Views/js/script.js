@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Kiểm tra nếu đây là trang teacherHomePage.html
     if (window.location.pathname.includes("teacherHomePage.html")) {
         // Gọi AJAX đến signin.php để lấy thông tin người dùng
-        fetch('../../../database/signin.php?ajax=true')
+        fetch('../../Models/signin.php?ajax=true')
             .then(response => response.json())
             .then(data => {
                 if (data.status === 'success') {
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Kiểm tra nếu đây là trang studentHomePage.html
     if (window.location.pathname.includes("studentHomePage.html")) {
         // Gọi AJAX đến signin.php để lấy thông tin người dùng
-        fetch('../../../database/signin.php?ajax=true')
+        fetch('../../Models/signin.php?ajax=true')
             .then(response => response.json())
             .then(data => {
                 if (data.status === 'success') {

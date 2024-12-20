@@ -1,5 +1,5 @@
 <?php
-include 'db_account.php'; 
+include 'connect_pdo.php'; 
 
 session_start(); 
 
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['full_name'] = $student['full_name'];
 
         // Chuyển hướng đến trang home cho user
-        header("Location: ../app/Views/html/studentHomePage.html");
+        header("Location: ../Views/html/studentHomePage.html");
         exit; 
     } elseif ($teacher && $password == $teacher['password']) {
         // Lưu thông tin admin
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['full_name'] = $teacher['full_name'];
 
         // Chuyển hướng đến trang 
-        header("Location: ../app/Views/html/teacherHomePage.html");
+        header("Location: ../Views/html/teacherHomePage.html");
         exit; 
     } else {
         // Sai thông tin đăng nhập
@@ -58,5 +58,5 @@ elseif ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['ajax']) && $_GET['aj
     exit;
 }
 
-include('../app/Views/html/signin.html'); 
+include('../Views/html/signin.html'); 
 ?>

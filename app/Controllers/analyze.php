@@ -1,7 +1,7 @@
 <?php
 
 // Kết nối đến cơ sở dữ liệu
-include "../../database/connect.php";
+include "../Models/connect_mysqli.php";
 
 session_start(); // Bắt đầu session để sử dụng $_SESSION
 $full_name = $_SESSION['full_name'];
