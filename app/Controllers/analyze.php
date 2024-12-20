@@ -43,31 +43,33 @@ $result_general = $stmt->get_result();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" href = "../../app/Views/css/teacherHomePage.css">
     <title>Kết Quả Tổng Hợp</title>
     <style>
-        table {
+        .table-ketqua {
             border-collapse: collapse;
             width: 100%;
             margin-bottom: 20px;
         }
-        th, td {
+        .table-ketqua th, td {
             border: 1px solid #ddd;
             padding: 8px;
             text-align: center;
         }
-        th {
+        .table-ketqua th {
             background-color: #2865FF;
             text-align: center;
             color: white;
         }
-        .nhanxet {
+        .table-ketqua .nhanxet {
             text-align: left;
         }
+
     </style>
 </head>
 <body>
     <h1>Kết Quả Với Các Câu Hỏi Về Môn Học</h1>
-    <table>
+    <table class="table-ketqua">
         <tr>
             <!-- <th>Tên Giảng Viên</th> -->
             <th>Tên Học Phần</th>
@@ -166,7 +168,7 @@ $result_general = $stmt->get_result();
     </table>
 
     <h1>Kết Quả Với Các Câu Hỏi Về Giảng Viên Và Nhận Xét Chung</h1>
-    <table>
+    <table class="table-ketqua">
         <tr>
             <!-- <th>Tên Giảng Viên</th> -->
             <th>Tên Học Phần</th>
