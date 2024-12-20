@@ -3,6 +3,9 @@
 // Kết nối đến cơ sở dữ liệu
 include "../../database/connect.php";
 
+session_start(); // Bắt đầu session để sử dụng $_SESSION
+$full_name = $_SESSION['full_name'];
+
 $sql = "
 SELECT 
     ten_giang_vien,
@@ -21,10 +24,17 @@ SELECT
     (SUM(cau_hoi_1) + SUM(cau_hoi_2) + SUM(cau_hoi_3) + SUM(cau_hoi_4) + SUM(cau_hoi_5)) AS tong_5_cau_hoi,
     (SUM(cau_hoi_1) + SUM(cau_hoi_2) + SUM(cau_hoi_3) + SUM(cau_hoi_4) + SUM(cau_hoi_5) + SUM(cau_hoi_6) + SUM(cau_hoi_7) + SUM(cau_hoi_8) + SUM(cau_hoi_9) + SUM(cau_hoi_10)) AS tong_10_cau_hoi
 FROM result
+WHERE ten_giang_vien = ?
 GROUP BY ten_giang_vien, ten_hoc_phan
 ";
 
-$result_general = $conn->query($sql);
+// $result_general = $conn->query($sql);
+
+// Chuẩn bị và thực thi câu truy vấn
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $full_name);
+$stmt->execute();
+$result_general = $stmt->get_result();
 
 ?>
 
@@ -59,7 +69,7 @@ $result_general = $conn->query($sql);
     <h1>Kết Quả Với Các Câu Hỏi Về Môn Học</h1>
     <table>
         <tr>
-            <th>Tên Giảng Viên</th>
+            <!-- <th>Tên Giảng Viên</th> -->
             <th>Tên Học Phần</th>
             <th>Số người đánh giá</th>
             <th>Nội dung</th>
@@ -133,7 +143,7 @@ $result_general = $conn->query($sql);
                 }
 
                 echo "<tr>";
-                echo "<td>{$row['ten_giang_vien']}</td>";
+                // echo "<td>{$row['ten_giang_vien']}</td>";
                 echo "<td>{$row['ten_hoc_phan']}</td>";
                 echo "<td>{$so_nguoi_danh_gia}</td>";
                 echo "<td>{$tong_cau_hoi_1}/{$diem_toi_da_cau_hoi}</td>";
@@ -158,7 +168,7 @@ $result_general = $conn->query($sql);
     <h1>Kết Quả Với Các Câu Hỏi Về Giảng Viên Và Nhận Xét Chung</h1>
     <table>
         <tr>
-            <th>Tên Giảng Viên</th>
+            <!-- <th>Tên Giảng Viên</th> -->
             <th>Tên Học Phần</th>
             <th>Số người đánh giá</th>
             <th>Trình bày</th>
@@ -234,7 +244,7 @@ $result_general = $conn->query($sql);
                 }
 
                 echo "<tr>";
-                echo "<td>{$row['ten_giang_vien']}</td>";
+                // echo "<td>{$row['ten_giang_vien']}</td>";
                 echo "<td>{$row['ten_hoc_phan']}</td>";
                 echo "<td>{$so_nguoi_danh_gia}</td>";
                 echo "<td>{$tong_cau_hoi_6}/{$diem_toi_da_cau_hoi}</td>";
