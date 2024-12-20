@@ -135,10 +135,22 @@ table.khaosat th, table.khaosat td {
 
 footer {
     text-align: center;
-    padding: 5px;
+    padding: 10px;
     background-color: #007bff;
     color: white;
-    display: block;
+    font-weight: bold;
+}
+
+#contact {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto 0;
+}
+
+#contact th, #contact td {
+    padding: 5px;
+    text-align: center;
+    font-size: 14px;
 }
 
 @media (max-width: 768px) {
