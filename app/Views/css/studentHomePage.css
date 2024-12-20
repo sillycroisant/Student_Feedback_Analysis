@@ -49,6 +49,13 @@ body {
     margin-right: 50px;
 }
 
+/* Thẻ li Chào người đăng nhập */
+.nav .greeting {
+    font-weight: bold;    /* Làm đậm chữ nếu cần */
+    align-self: center;            /* Căn giữa các mục theo chiều dọc */
+
+}
+
 /* Khi rê chuột qua thanh navigator sẽ làm nó chuyển màu để nhận biết */
 .nav li a:hover {
     color: black;

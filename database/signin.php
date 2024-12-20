@@ -24,6 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Lưu thông tin người dùng
         $_SESSION['user_id'] = $student['id'];
         $_SESSION['username'] = $student['username'];
+        $_SESSION['full_name'] = $student['full_name'];
 
         // Chuyển hướng đến trang home cho user
         header("Location: ../app/Views/html/studentHomePage.html");
@@ -32,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Lưu thông tin admin
         $_SESSION['user_id'] = $teacher['id'];
         $_SESSION['username'] = $teacher['username'];
+        $_SESSION['full_name'] = $teacher['full_name'];
 
         // Chuyển hướng đến trang 
         header("Location: ../app/Views/html/teacherHomePage.html");
@@ -40,6 +42,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Sai thông tin đăng nhập
         $error_message = "Tên đăng nhập hoặc mật khẩu sai!";
     }
+}
+
+elseif ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['ajax']) && $_GET['ajax'] == 'true') {
+    // Trả về dữ liệu người dùng qua AJAX
+    if (isset($_SESSION['full_name'])) {
+        echo json_encode([
+            'status' => 'success',
+            'full_name' => $_SESSION['full_name'],
+            'username' => $_SESSION['username']
+        ]);
+    } else {
+        echo json_encode(['status' => 'error', 'message' => 'Người dùng chưa đăng nhập']);
+    }
+    exit;
 }
 
 include('../app/Views/html/signin.html'); 
