@@ -44,3 +44,67 @@ function showSection(sectionId) {
 function navigate(path){
     window.location.href = path;
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Kiểm tra nếu đây là trang teacherHomePage.html
+    if (window.location.pathname.includes("teacherHomePage.html")) {
+        // Gọi AJAX đến signin.php để lấy thông tin người dùng
+        fetch('../../Models/signin.php?ajax=true')
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    // Hiển thị thông tin người dùng chỉ trên teacherHomePage.html
+                    const greetingElement = document.createElement('li');
+                    greetingElement.textContent = `Chào ${data.full_name}`;
+                    // document.querySelector('.nav').appendChild(greetingElement);
+
+                    // Thêm lớp CSS cho thẻ li
+                    greetingElement.classList.add('greeting');
+
+                     // Tìm thẻ "Đăng xuất" (có href là "../../../index.html")
+                    const logoutLi = document.querySelector('a[href="../../../index.html"]').parentElement;
+
+                    // Chèn thẻ <li> mới vào trước thẻ "Đăng xuất"
+                    logoutLi.parentElement.insertBefore(greetingElement, logoutLi);
+
+                } else {
+                    alert(data.message); // Hiển thị lỗi nếu có
+                    window.location.href = '../../../index.html'; // Chuyển hướng nếu chưa đăng nhập
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching user info:', error);
+            });
+    }
+
+    // Kiểm tra nếu đây là trang studentHomePage.html
+    if (window.location.pathname.includes("studentHomePage.html")) {
+        // Gọi AJAX đến signin.php để lấy thông tin người dùng
+        fetch('../../Models/signin.php?ajax=true')
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    // Hiển thị thông tin người dùng chỉ trên studentHomePage.html
+                    const greetingElement = document.createElement('li');
+                    greetingElement.textContent = `Chào ${data.full_name}`;
+                    // document.querySelector('.nav').appendChild(greetingElement);
+
+                    // Thêm lớp CSS cho thẻ li
+                    greetingElement.classList.add('greeting');
+
+                     // Tìm thẻ "Đăng xuất" (có href là "../../../index.html")
+                    const logoutLi = document.querySelector('a[href="../../../index.html"]').parentElement;
+
+                    // Chèn thẻ <li> mới vào trước thẻ "Đăng xuất"
+                    logoutLi.parentElement.insertBefore(greetingElement, logoutLi);
+
+                } else {
+                    alert(data.message); // Hiển thị lỗi nếu có
+                    window.location.href = '../../../index.html'; // Chuyển hướng nếu chưa đăng nhập
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching user info:', error);
+            });
+    }
+});

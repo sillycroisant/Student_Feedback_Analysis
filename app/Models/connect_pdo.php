@@ -1,6 +1,6 @@
 <?php
 $host = 'localhost';
-$dbname = 'Student_Feedback_Analysis';
+$dbname = 'student_feedback_analysis';
 $user = 'root'; 
 $password = ''; 
 try {

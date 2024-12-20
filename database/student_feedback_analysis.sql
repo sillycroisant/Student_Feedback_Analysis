@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 19, 2024 at 03:31 PM
+-- Generation Time: Dec 20, 2024 at 12:07 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.1.25
 
@@ -73,6 +73,19 @@ CREATE TABLE `result` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `result`
+--
+
+INSERT INTO `result` (`id`, `ten_giang_vien`, `ten_hoc_phan`, `nguoi_danh_gia`, `cau_hoi_1`, `cau_hoi_2`, `cau_hoi_3`, `cau_hoi_4`, `cau_hoi_5`, `cau_hoi_6`, `cau_hoi_7`, `cau_hoi_8`, `cau_hoi_9`, `cau_hoi_10`, `created_at`) VALUES
+(3, 'giảng viên 1', 'Calculus', 'Lê Quang Hoàng', 5, 4, 3, 5, 4, 5, 3, 4, 5, 4, '2024-12-20 03:22:50'),
+(4, 'giảng viên 2', 'Physics', 'Lê Quang Hoàng', 5, 4, 3, 5, 4, 5, 3, 4, 5, 4, '2024-12-20 03:22:50'),
+(5, 'giảng viên 3', 'Physics', 'Trần Đức Phát', 5, 4, 3, 5, 4, 5, 3, 4, 5, 4, '2024-12-20 03:22:50'),
+(6, 'giảng viên 2', 'Calculus', 'Nguyễn Văn Huy', 5, 4, 3, 5, 4, 5, 3, 4, 5, 4, '2024-12-20 03:22:50'),
+(7, 'giảng viên 3', 'English', 'Lê Quang Hoàng', 5, 4, 3, 5, 4, 5, 3, 4, 5, 4, '2024-12-20 03:22:50'),
+(8, 'giảng viên 3', 'English', 'Nguyễn Văn Huy', 5, 4, 3, 5, 4, 5, 3, 4, 5, 4, '2024-12-20 03:22:50'),
+(9, 'giảng viên 1', 'Calculus', 'Trần Đức Phát', 3, 2, 1, 4, 5, 3, 2, 5, 4, 5, '2024-12-20 03:22:50');
+
 -- --------------------------------------------------------
 
 --
@@ -135,7 +148,7 @@ ALTER TABLE `question`
 --
 ALTER TABLE `result`
   ADD PRIMARY KEY (`id`);
-  ADD UNIQUE KEY `ten_giang_vien` (`ten_giang_vien`);
+--  ADD UNIQUE KEY `ten_giang_vien` (`ten_giang_vien`);
 
 --
 -- Indexes for table `student`
@@ -159,7 +172,7 @@ ALTER TABLE `teacher`
 -- AUTO_INCREMENT for table `result`
 --
 ALTER TABLE `result`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `student`
