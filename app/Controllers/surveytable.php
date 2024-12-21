@@ -1,4 +1,9 @@
 <?php
+
+// Nhận giá trị Tên giảng viên (full_name) và Tên học phần (subject) từ URL
+$ten_giang_vien = isset($_GET['full_name']) ? $_GET['full_name'] : '';
+$ten_hoc_phan = isset($_GET['subject']) ? $_GET['subject'] : '';
+
 // Kết nối cơ sở dữ liệu
 include '../Models/connect_pdo.php';
 
@@ -83,8 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
     <div class="navigation">
         <ul class="nav">
-            <li><a href="../../app/Views/html/studentHomePage.html">Trang chủ</a></li>
-            <li><a href="#" onclick="showSection('calendar')">Khảo sát</a></li> 
+            <li><a href="../Views/html/studentHomePage.html">Quay lại</a></li>
             <li><a href="../../index.html" >Đăng xuất</a></li>
         </ul>
     </div>
@@ -106,10 +110,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form action="surveytable.php" method="POST">
             <!-- Thêm các trường nhập liệu cho tên giảng viên, tên học phần, người đánh giá -->
             <label for="ten_giang_vien">Tên Giảng Viên:</label>
-            <input type="text" id="ten_giang_vien" name="ten_giang_vien" required>
+            <input type="text" id="ten_giang_vien" name="ten_giang_vien" value="<?php echo htmlspecialchars($ten_giang_vien); ?>" readonly>
 
             <label for="ten_hoc_phan">Tên Học Phần:</label>
-            <input type="text" id="ten_hoc_phan" name="ten_hoc_phan" required>
+            <input type="text" id="ten_hoc_phan" name="ten_hoc_phan" value="<?php echo htmlspecialchars($ten_hoc_phan); ?>" readonly>
 
             <label for="nguoi_danh_gia">Người Đánh Giá:</label>
             <input type="text" id="nguoi_danh_gia" name="nguoi_danh_gia" required>
@@ -139,4 +143,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
     </div>
 </body>
+
+<footer>
+    <p>
+      Liên hệ <br>
+      <table id="contact">
+        <tr>
+          <th>Nguyễn Văn Huy</th>
+          <th>Lê Quang Hoàng</th>
+          <th>Trần Đức Phát</th>
+        </tr>
+        <tr>
+          <td>21KTMT</td>
+          <td>21KTMT</td>
+          <td>21KTMT</td>
+        </tr>
+        <tr>
+          <td>106210218@sv1.dut.udn.vn</td>
+          <td>106210214@sv1.dut.udn.vn</td>
+          <td>106210225@sv1.dut.udn.vn</td>
+        </tr>
+      </table>
+    </p>
+</footer>
+
 </html>

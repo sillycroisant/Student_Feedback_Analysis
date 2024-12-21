@@ -1,9 +1,9 @@
-/* Reset một số kiểu mặc định của trình duyệt */
+/* Reset một số kiểu mặc định của trình duyệt
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+} */
 
 /* Đặt font cho toàn bộ trang */
 body {
@@ -124,54 +124,6 @@ ul.list {
     color: #007bff;
     text-decoration: none;
 }
-
-
-footer {
-    text-align: center;
-    padding: 5px;
-    background-color: #007bff;
-    color: white;
-    display: block;
-}
-/* 
-.button {
-    border: none;
-    color: white;
-    padding: 16px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-} */
-
-/* .footer {
-    background-color: #0056b3;
-    color: white;
-    padding: 20px 0;
-    text-align: center;
-}
-.footer .contact {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-.footer .contact div {
-    margin: 10px;
-    max-width: 200px;
-}
-.footer .contact div p {
-    margin: 5px 0;
-}
-.footer .contact div a {
-    color: white;
-    text-decoration: none;
-}
-.footer .copyright {
-    margin-top: 20px;
-} */
 
 @media (max-width: 768px) {
     .content {
@@ -322,4 +274,25 @@ button[type="submit"]:hover {
 
 .container {
     animation: fadeIn 1s ease-out;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+footer #contact {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto 0;
+}
+
+footer #contact th, #contact td {
+    padding: 5px;
+    text-align: center;
+    font-size: 14px;
+    border: none;
 }
