@@ -96,6 +96,13 @@ ul.list {
     color: black;
 }
 
+/* Thẻ li Chào người đăng nhập */
+.nav .greeting {
+    font-weight: bold;    /* Làm đậm chữ nếu cần */
+    align-self: center;            /* Căn giữa các mục theo chiều dọc */
+
+}
+
 .trangchu {
     display: flex;
     justify-content: center;

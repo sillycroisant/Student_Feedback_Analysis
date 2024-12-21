@@ -231,9 +231,9 @@ $result_general = $stmt->get_result();
                 if ($tong_cau_hoi_10 >= ($diem_toi_da_cau_hoi * 0.8)) {
                     $nhan_xet_10 = "=> Sinh viên rất hài lòng về giảng viên. Cần tiếp tục phát huy. <br>";
                 } elseif ($tong_cau_hoi_10 >= ($diem_toi_da_cau_hoi * 0.5)) { 
-                    $nhan_xet_10 = "=> Sinh viên khá hài lòng về giảng viên tuy nhiên vẫn còn một số điểm cần cải thiện, phát triển <br>";
+                    $nhan_xet_10 = "=> Sinh viên khá hài lòng về giảng viên tuy nhiên vẫn còn một số điểm cần cải thiện, phát triển. <br>";
                 } else {
-                    $nhan_xet_10 = "=> Sinh viên chưa hài lòng về giảng viên. Cần cải thiện ngay. <br>";
+                    $nhan_xet_10 = "=> Sinh viên chưa hài lòng về giảng viên. Cần xem lại nhận xét để cải thiện. <br>";
                 }
 
                 if ($tong_10_cau_hoi >= ($diem_toi_da_10_cau_hoi * 0.8)) {
@@ -241,7 +241,7 @@ $result_general = $stmt->get_result();
                 } elseif ($tong_10_cau_hoi >= ($diem_toi_da_10_cau_hoi * 0.5)) { 
                     $nhan_xet_10cau = $row['ten_giang_vien'] . " dạy học phần " . $row['ten_hoc_phan'] . " khá tốt nhưng còn một số điểm cần lưu ý. Cần tiếp tục cải thiện cho những lần sau. <br>";
                 } else {
-                    $nhan_xet_10cau = $row['ten_giang_vien'] . " dạy học phần " . $row['ten_hoc_phan'] . " chưa tốt. Cần cải thiện ngay.";
+                    $nhan_xet_10cau = $row['ten_giang_vien'] . " dạy học phần " . $row['ten_hoc_phan'] . " chưa tốt. Cần xem kỹ nhận xét để cải thiện cho những lần sau.  <br>";
                 }
 
                 echo "<tr>";

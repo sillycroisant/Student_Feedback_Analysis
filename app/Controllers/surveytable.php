@@ -86,8 +86,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <img alt="Logo" height="50" src="../../public/images/Logo.png" width="50" />
         <h1> HỆ THỐNG PHÂN TÍCH PHẢN HỒI NGƯỜI HỌC </h1>
     </div>
+    <?php session_start(); // Đảm bảo session đã được khởi tạo ?>
     <div class="navigation">
         <ul class="nav">
+            <?php if (isset($_SESSION['full_name'])): ?>
+            <li class="greeting">Chào <?php echo htmlspecialchars($_SESSION['full_name']); ?></li>
+            <?php endif; ?>
             <li><a href="../Views/html/studentHomePage.html">Quay lại</a></li>
             <li><a href="../../index.html" >Đăng xuất</a></li>
         </ul>
@@ -116,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="text" id="ten_hoc_phan" name="ten_hoc_phan" value="<?php echo htmlspecialchars($ten_hoc_phan); ?>" readonly>
 
             <label for="nguoi_danh_gia">Người Đánh Giá:</label>
-            <input type="text" id="nguoi_danh_gia" name="nguoi_danh_gia" required>
+            <input type="text" id="nguoi_danh_gia" name="nguoi_danh_gia" value="<?php echo isset($_SESSION['full_name']) ? htmlspecialchars($_SESSION['full_name']) : ''; ?>" readonly>
 
             <?php 
             $index = 1;
