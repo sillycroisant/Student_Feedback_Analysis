@@ -3,6 +3,8 @@
 // Nhận giá trị Tên giảng viên (full_name) và Tên học phần (subject) từ URL
 $ten_giang_vien = isset($_GET['full_name']) ? $_GET['full_name'] : '';
 $ten_hoc_phan = isset($_GET['subject']) ? $_GET['subject'] : '';
+session_start();
+$nguoi_danh_gia = $_SESSION['full_name'];
 
 // Kết nối cơ sở dữ liệu
 include '../Models/connect_pdo.php';
@@ -19,56 +21,75 @@ if (!$questions) {
     die("Không tìm thấy câu hỏi.");
 }
 
-// Biến để kiểm tra form đã được gửi
-$formSubmitted = false;
+// Kiểm tra nếu đã đánh giá hay chưa
+$checkQuery = "SELECT COUNT(*) FROM result 
+               WHERE ten_giang_vien = :ten_giang_vien 
+               AND ten_hoc_phan = :ten_hoc_phan 
+               AND nguoi_danh_gia = :nguoi_danh_gia";
+$checkStmt = $pdo->prepare($checkQuery);
+$checkStmt->bindParam(':ten_giang_vien', $ten_giang_vien, PDO::PARAM_STR);
+$checkStmt->bindParam(':ten_hoc_phan', $ten_hoc_phan, PDO::PARAM_STR);
+$checkStmt->bindParam(':nguoi_danh_gia', $_SESSION['full_name'], PDO::PARAM_STR);
+$checkStmt->execute();
+$checkResult = $checkStmt->fetchColumn();
 
-// Kiểm tra nếu form đã được gửi
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Lấy giá trị từ form
-    $ten_giang_vien = $_POST['ten_giang_vien']; // Bạn cần thêm trường này trong form để lấy tên giảng viên
-    $ten_hoc_phan = $_POST['ten_hoc_phan']; // Tương tự, thêm trường cho tên học phần
-    $nguoi_danh_gia = $_POST['nguoi_danh_gia']; // Trường cho tên người đánh giá
+if ($checkResult > 0) {
+    // Nếu đã đánh giá rồi, thông báo
+    $success_message = "Bạn đã đánh giá học phần này rồi.";
+    $formSubmitted = true;
+} else {
 
-    // Lấy các câu trả lời từ form
-    $cau_hoi_1 = $_POST['q1'];
-    $cau_hoi_2 = $_POST['q2'];
-    $cau_hoi_3 = $_POST['q3'];
-    $cau_hoi_4 = $_POST['q4'];
-    $cau_hoi_5 = $_POST['q5'];
-    $cau_hoi_6 = $_POST['q6'];
-    $cau_hoi_7 = $_POST['q7'];
-    $cau_hoi_8 = $_POST['q8'];
-    $cau_hoi_9 = $_POST['q9'];
-    $cau_hoi_10 = $_POST['q10'];
+    // Biến để kiểm tra form đã được gửi
+    $formSubmitted = false;
 
-    // Câu lệnh SQL để chèn kết quả vào bảng 'result'
-    $query = "INSERT INTO result (ten_giang_vien, ten_hoc_phan, nguoi_danh_gia, cau_hoi_1, cau_hoi_2, cau_hoi_3, cau_hoi_4, cau_hoi_5, cau_hoi_6, cau_hoi_7, cau_hoi_8, cau_hoi_9, cau_hoi_10) 
-              VALUES (:ten_giang_vien, :ten_hoc_phan, :nguoi_danh_gia, :cau_hoi_1, :cau_hoi_2, :cau_hoi_3, :cau_hoi_4, :cau_hoi_5, :cau_hoi_6, :cau_hoi_7, :cau_hoi_8, :cau_hoi_9, :cau_hoi_10)";
+    // Kiểm tra nếu form đã được gửi
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Lấy giá trị từ form
+        $ten_giang_vien = $_POST['ten_giang_vien']; // Bạn cần thêm trường này trong form để lấy tên giảng viên
+        $ten_hoc_phan = $_POST['ten_hoc_phan']; // Tương tự, thêm trường cho tên học phần
+        $nguoi_danh_gia = $_POST['nguoi_danh_gia']; // Trường cho tên người đánh giá
 
-    // Chuẩn bị câu lệnh
-    $stmt = $pdo->prepare($query);
+        // Lấy các câu trả lời từ form
+        $cau_hoi_1 = $_POST['q1'];
+        $cau_hoi_2 = $_POST['q2'];
+        $cau_hoi_3 = $_POST['q3'];
+        $cau_hoi_4 = $_POST['q4'];
+        $cau_hoi_5 = $_POST['q5'];
+        $cau_hoi_6 = $_POST['q6'];
+        $cau_hoi_7 = $_POST['q7'];
+        $cau_hoi_8 = $_POST['q8'];
+        $cau_hoi_9 = $_POST['q9'];
+        $cau_hoi_10 = $_POST['q10'];
 
-    // Liên kết các tham số
-    $stmt->bindParam(':ten_giang_vien', $ten_giang_vien, PDO::PARAM_STR);
-    $stmt->bindParam(':ten_hoc_phan', $ten_hoc_phan, PDO::PARAM_STR);
-    $stmt->bindParam(':nguoi_danh_gia', $nguoi_danh_gia, PDO::PARAM_STR);
-    $stmt->bindParam(':cau_hoi_1', $cau_hoi_1, PDO::PARAM_INT);
-    $stmt->bindParam(':cau_hoi_2', $cau_hoi_2, PDO::PARAM_INT);
-    $stmt->bindParam(':cau_hoi_3', $cau_hoi_3, PDO::PARAM_INT);
-    $stmt->bindParam(':cau_hoi_4', $cau_hoi_4, PDO::PARAM_INT);
-    $stmt->bindParam(':cau_hoi_5', $cau_hoi_5, PDO::PARAM_INT);
-    $stmt->bindParam(':cau_hoi_6', $cau_hoi_6, PDO::PARAM_INT);
-    $stmt->bindParam(':cau_hoi_7', $cau_hoi_7, PDO::PARAM_INT);
-    $stmt->bindParam(':cau_hoi_8', $cau_hoi_8, PDO::PARAM_INT);
-    $stmt->bindParam(':cau_hoi_9', $cau_hoi_9, PDO::PARAM_INT);
-    $stmt->bindParam(':cau_hoi_10', $cau_hoi_10, PDO::PARAM_INT);
+        // Câu lệnh SQL để chèn kết quả vào bảng 'result'
+        $query = "INSERT INTO result (ten_giang_vien, ten_hoc_phan, nguoi_danh_gia, cau_hoi_1, cau_hoi_2, cau_hoi_3, cau_hoi_4, cau_hoi_5, cau_hoi_6, cau_hoi_7, cau_hoi_8, cau_hoi_9, cau_hoi_10) 
+                  VALUES (:ten_giang_vien, :ten_hoc_phan, :nguoi_danh_gia, :cau_hoi_1, :cau_hoi_2, :cau_hoi_3, :cau_hoi_4, :cau_hoi_5, :cau_hoi_6, :cau_hoi_7, :cau_hoi_8, :cau_hoi_9, :cau_hoi_10)";
 
-    // Thực thi câu lệnh
-    if ($stmt->execute()) {
-        $success_message = "Đánh giá của bạn đã được gửi thành công!";
-        $formSubmitted = true;
-    } else {
-        $error_message = "Có lỗi xảy ra trong quá trình gửi đánh giá.";
+        // Chuẩn bị câu lệnh
+        $stmt = $pdo->prepare($query);
+
+        // Liên kết các tham số
+        $stmt->bindParam(':ten_giang_vien', $ten_giang_vien, PDO::PARAM_STR);
+        $stmt->bindParam(':ten_hoc_phan', $ten_hoc_phan, PDO::PARAM_STR);
+        $stmt->bindParam(':nguoi_danh_gia', $nguoi_danh_gia, PDO::PARAM_STR);
+        $stmt->bindParam(':cau_hoi_1', $cau_hoi_1, PDO::PARAM_INT);
+        $stmt->bindParam(':cau_hoi_2', $cau_hoi_2, PDO::PARAM_INT);
+        $stmt->bindParam(':cau_hoi_3', $cau_hoi_3, PDO::PARAM_INT);
+        $stmt->bindParam(':cau_hoi_4', $cau_hoi_4, PDO::PARAM_INT);
+        $stmt->bindParam(':cau_hoi_5', $cau_hoi_5, PDO::PARAM_INT);
+        $stmt->bindParam(':cau_hoi_6', $cau_hoi_6, PDO::PARAM_INT);
+        $stmt->bindParam(':cau_hoi_7', $cau_hoi_7, PDO::PARAM_INT);
+        $stmt->bindParam(':cau_hoi_8', $cau_hoi_8, PDO::PARAM_INT);
+        $stmt->bindParam(':cau_hoi_9', $cau_hoi_9, PDO::PARAM_INT);
+        $stmt->bindParam(':cau_hoi_10', $cau_hoi_10, PDO::PARAM_INT);
+
+        // Thực thi câu lệnh
+        if ($stmt->execute()) {
+            $success_message = "Đánh giá của bạn đã được gửi thành công!";
+            $formSubmitted = true;
+        } else {
+            $error_message = "Có lỗi xảy ra trong quá trình gửi đánh giá.";
+        }
     }
 }
 ?>
@@ -86,11 +107,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <img alt="Logo" height="50" src="../../public/images/Logo.png" width="50" />
         <h1> HỆ THỐNG PHÂN TÍCH PHẢN HỒI NGƯỜI HỌC </h1>
     </div>
-    <?php session_start(); // Đảm bảo session đã được khởi tạo ?>
+    
     <div class="navigation">
         <ul class="nav">
-            <?php if (isset($_SESSION['full_name'])): ?>
-            <li class="greeting">Chào <?php echo htmlspecialchars($_SESSION['full_name']); ?></li>
+            <?php if (isset($nguoi_danh_gia)): ?>
+            <li class="greeting">Chào <?php echo htmlspecialchars($nguoi_danh_gia); ?></li>
             <?php endif; ?>
             <li><a href="../Views/html/studentHomePage.html">Quay lại</a></li>
             <li><a href="../../index.html" >Đăng xuất</a></li>
@@ -120,7 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="text" id="ten_hoc_phan" name="ten_hoc_phan" value="<?php echo htmlspecialchars($ten_hoc_phan); ?>" readonly>
 
             <label for="nguoi_danh_gia">Người Đánh Giá:</label>
-            <input type="text" id="nguoi_danh_gia" name="nguoi_danh_gia" value="<?php echo isset($_SESSION['full_name']) ? htmlspecialchars($_SESSION['full_name']) : ''; ?>" readonly>
+            <input type="text" id="nguoi_danh_gia" name="nguoi_danh_gia" value="<?php echo isset($nguoi_danh_gia) ? htmlspecialchars($_SESSION['full_name']) : ''; ?>" readonly>
 
             <?php 
             $index = 1;
