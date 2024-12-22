@@ -30,7 +30,6 @@ $result_general = $conn->query($sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../public/fonts/all.min.css">
     <!-- <title>Bảng khảo sát</title> -->
     <style>
         .table-khaosat {
@@ -50,6 +49,9 @@ $result_general = $conn->query($sql);
         }
         .table-khaosat .nhanxet {
             text-align: left;
+        }
+        .table-khaosat td a{
+            text-decoration: none;
         }
 
     </style>
@@ -79,7 +81,7 @@ $result_general = $conn->query($sql);
                     echo 
                         '<td>
                             <a href="../../Controllers/surveytable.php?full_name=' . urlencode($row['full_name']) . '&subject=' . urlencode($subject) . '">
-                            <i style="font-size:15px; color: blue;" class="far fa-edit"></i>
+                            <span>✍</span>
                             </a>
                         </td>';
                     echo "</tr>";
