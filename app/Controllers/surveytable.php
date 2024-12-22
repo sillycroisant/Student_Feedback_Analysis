@@ -10,7 +10,7 @@ $nguoi_danh_gia = $_SESSION['full_name'];
 include '../Models/connect_pdo.php';
 
 $idtoconnect = 1; // ID của nhóm câu hỏi cần lấy
-$query = "SELECT q1, q2, q3, q4, q5, q6, q7, q8, q9, q10 
+$query = "SELECT q1, q2, q3, q4, q5, q6, q7, q8, q9, q10
           FROM question WHERE idtoconnect = :idtoconnect";
 $stmt = $pdo->prepare($query);
 $stmt->bindParam(':idtoconnect', $idtoconnect, PDO::PARAM_INT);
@@ -33,10 +33,30 @@ $checkStmt->bindParam(':nguoi_danh_gia', $_SESSION['full_name'], PDO::PARAM_STR)
 $checkStmt->execute();
 $checkResult = $checkStmt->fetchColumn();
 
+$resultData = [];
+
 if ($checkResult > 0) {
     // Nếu đã đánh giá rồi, thông báo
-    $success_message = "Bạn đã đánh giá học phần này rồi.";
+    $success_message = "Bạn đã đánh giá học phần này rồi. Hãy";
     $formSubmitted = true;
+     // Nếu đã đánh giá, lấy dữ liệu đánh giá từ bảng 'result'
+    $fetchResultQuery = "SELECT cau_hoi_1, cau_hoi_2, cau_hoi_3, cau_hoi_4, cau_hoi_5, cau_hoi_6, cau_hoi_7, cau_hoi_8, cau_hoi_9, cau_hoi_10 
+                         FROM result 
+                         WHERE ten_giang_vien = :ten_giang_vien 
+                         AND ten_hoc_phan = :ten_hoc_phan 
+                         AND nguoi_danh_gia = :nguoi_danh_gia";
+    $fetchStmt = $pdo->prepare($fetchResultQuery);
+    $fetchStmt->bindParam(':ten_giang_vien', $ten_giang_vien, PDO::PARAM_STR);
+    $fetchStmt->bindParam(':ten_hoc_phan', $ten_hoc_phan, PDO::PARAM_STR);
+    $fetchStmt->bindParam(':nguoi_danh_gia', $nguoi_danh_gia, PDO::PARAM_STR);
+    $fetchStmt->execute();
+    $resultData = $fetchStmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($resultData) {
+        $formSubmitted = true;
+    } else {
+        $error_message = "Không tìm thấy dữ liệu đánh giá.";
+    }
 } else {
 
     // Biến để kiểm tra form đã được gửi
@@ -85,7 +105,7 @@ if ($checkResult > 0) {
 
         // Thực thi câu lệnh
         if ($stmt->execute()) {
-            $success_message = "Đánh giá của bạn đã được gửi thành công!";
+            $success_message = "Đánh giá của bạn đã được gửi thành công! Hãy";
             $formSubmitted = true;
         } else {
             $error_message = "Có lỗi xảy ra trong quá trình gửi đánh giá.";
@@ -110,63 +130,99 @@ if ($checkResult > 0) {
     
     <div class="navigation">
         <ul class="nav">
+            <li><a href="../Views/html/studentHomePage.html">Trang chủ</a></li>
+            <li><a > Thực hiện khảo sát</a></li>
             <?php if (isset($nguoi_danh_gia)): ?>
             <li class="greeting">Chào <?php echo htmlspecialchars($nguoi_danh_gia); ?></li>
             <?php endif; ?>
-            <li><a href="../Views/html/studentHomePage.html">Quay lại</a></li>
             <li><a href="../../index.html" >Đăng xuất</a></li>
         </ul>
     </div>
      <!-- //Hiển thị thông báo lỗi nếu có -->
-     <?php if (!empty($error_message)): ?>
+            <?php if (!empty($error_message)): ?>
             <p style="color: red; text-align: center;"><?php echo $error_message; ?></p>
             <?php endif; ?>
-            <!-- //Hiển thị thông báo lỗi nếu có -->
-            <?php if (!empty($success_message)): ?>
-            <p style="color: green; text-align: center;"><?php echo $success_message; ?></p>
-            <?php endif; ?>
-
-    <div class="container">
-          <h2>
-          <i class="fas fa-clipboard-list">
-          </i>
-           Đánh giá lớp học phần
-           </h2>
-        <form action="surveytable.php" method="POST">
-            <!-- Thêm các trường nhập liệu cho tên giảng viên, tên học phần, người đánh giá -->
-            <label for="ten_giang_vien">Tên Giảng Viên:</label>
-            <input type="text" id="ten_giang_vien" name="ten_giang_vien" value="<?php echo htmlspecialchars($ten_giang_vien); ?>" readonly>
-
-            <label for="ten_hoc_phan">Tên Học Phần:</label>
-            <input type="text" id="ten_hoc_phan" name="ten_hoc_phan" value="<?php echo htmlspecialchars($ten_hoc_phan); ?>" readonly>
-
-            <label for="nguoi_danh_gia">Người Đánh Giá:</label>
-            <input type="text" id="nguoi_danh_gia" name="nguoi_danh_gia" value="<?php echo isset($nguoi_danh_gia) ? htmlspecialchars($_SESSION['full_name']) : ''; ?>" readonly>
-
-            <?php 
-            $index = 1;
-            foreach ($questions as $key => $question) { 
-            ?>
-                <div class="question">
-                    <p><strong>Câu hỏi <?php echo $index++; ?>:</strong> <?php echo htmlspecialchars($question); ?></p>
-                    <div class="options">
-                    <p><label><input type="radio" name="<?php echo $key; ?>" value="5"> Rất đồng ý</label><br>
-                        <label><input type="radio" name="<?php echo $key; ?>" value="4"> Đồng ý</label> <br> 
-                        <label><input type="radio" name="<?php echo $key; ?>" value="2"> Đồng ý một phần</label><br>
-                        <label><input type="radio" name="<?php echo $key; ?>" value="3"> Không đồng ý</label><br>
-                        <label><input type="radio" name="<?php echo $key; ?>" value="1" required> Rất không đồng ý</label><br>
-                    <p>
-                    </div>
+     <!-- //Hiển thị thông báo lỗi nếu có -->
+                <?php if (!empty($success_message)): ?>
+                <div style="color: green; text-align: center;"> 
+                <span><?php echo $success_message; ?></span>
+                <a href="../Views/html/studentHomePage.html"
+                style="text-align: center; color: #7C3CB4;"> Quay lại</a>
                 </div>
-            <?php } ?>
-           
-            <div class="submit-section">
-            <?php if (!$formSubmitted) { ?>
-                <button type="submit">Gửi đánh giá</button>
-            <?php } ?>
-            </div>
-        </form>
+                <?php endif; ?>
+
+<div class="container">
+  <h2><i class="fas fa-clipboard-list"></i> Đánh giá lớp học phần</h2>
+
+  <form action="surveytable.php" method="POST">
+    <!-- Thông tin nhập liệu -->
+    <div class="form-row">
+      <label for="ten_giang_vien">Tên Giảng Viên:</label>
+      <input type="text" id="ten_giang_vien" name="ten_giang_vien" 
+             value="<?php echo htmlspecialchars($ten_giang_vien); ?>" readonly>
+
+      <label for="ten_hoc_phan">Tên Học Phần:</label>
+      <input type="text" id="ten_hoc_phan" name="ten_hoc_phan" 
+             value="<?php echo htmlspecialchars($ten_hoc_phan); ?>" readonly>
+
+      <label for="nguoi_danh_gia">Người Đánh Giá:</label>
+      <input type="text" id="nguoi_danh_gia" name="nguoi_danh_gia" 
+             value="<?php echo isset($nguoi_danh_gia) ? htmlspecialchars($_SESSION['full_name']) : ''; ?>" readonly>
     </div>
+
+    <!-- Các câu hỏi -->
+    <?php 
+    $index = 1;
+    foreach ($questions as $key => $question) { 
+      // Lấy giá trị đã lưu (nếu có) từ cơ sở dữ liệu
+      $value = isset($resultData['cau_hoi_' . $index]) ? $resultData['cau_hoi_' . $index] : ''; 
+    ?>
+    <div class="question">
+      <p class= "ques" ><strong>Câu hỏi <?php echo $index; ?>:</strong> <?php echo htmlspecialchars($question); ?></p>
+      <div class="options">
+        <label class="option-<?php echo $value; ?>">
+          <input type="radio" name="q<?php echo $index; ?>" value="5" 
+                 <?php echo $value == 5 ? 'checked' : ''; ?>> Rất đồng ý
+        </label><br>
+
+        <label class="<?php echo $value == 4 ? 'bold-label' : ''; ?>">
+          <input type="radio" name="q<?php echo $index; ?>" value="4" 
+                 <?php echo $value == 4 ? 'checked' : ''; ?>> Đồng ý
+        </label><br>
+
+        <label class="<?php echo $value == 3 ? 'bold-label' : ''; ?>">
+          <input type="radio" name="q<?php echo $index; ?>" value="3" 
+                 <?php echo $value == 3 ? 'checked' : ''; ?>> Đồng ý một phần
+        </label><br>
+
+        <label class="<?php echo $value == 2 ? 'bold-label' : ''; ?>">
+          <input type="radio" name="q<?php echo $index; ?>" value="2" 
+                 <?php echo $value == 2 ? 'checked' : ''; ?>> Không đồng ý
+        </label><br>
+
+        <label class="<?php echo $value == 1 ? 'bold-label' : ''; ?>">
+          <input type="radio" name="q<?php echo $index; ?>" value="1" 
+                 <?php echo $value == 1 ? 'checked' : ''; ?>> Rất không đồng ý
+        </label><br>
+      </div>
+    </div>
+
+    <?php 
+      $index++; 
+    } 
+    ?>
+
+    <!-- Nút gửi -->
+    <div class="submit-section">
+      <?php if (!$formSubmitted) { ?>
+        <button type="submit">Gửi đánh giá</button>
+      <?php } ?>
+    </div>
+
+  </form>
+
+</div>
+
 </body>
 
 <footer>
