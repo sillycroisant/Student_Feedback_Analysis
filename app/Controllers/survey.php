@@ -50,6 +50,9 @@ $result_general = $conn->query($sql);
         .table-khaosat .nhanxet {
             text-align: left;
         }
+        .table-khaosat td a{
+            text-decoration: none;
+        }
 
     </style>
 </head>
