@@ -73,19 +73,6 @@ CREATE TABLE `result` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `result`
---
-
-INSERT INTO `result` (`id`, `ten_giang_vien`, `ten_hoc_phan`, `nguoi_danh_gia`, `cau_hoi_1`, `cau_hoi_2`, `cau_hoi_3`, `cau_hoi_4`, `cau_hoi_5`, `cau_hoi_6`, `cau_hoi_7`, `cau_hoi_8`, `cau_hoi_9`, `cau_hoi_10`, `created_at`) VALUES
-(3, 'giảng viên 1', 'Calculus', 'Lê Quang Hoàng', 5, 4, 3, 5, 4, 5, 3, 4, 5, 4, '2024-12-20 03:22:50'),
-(4, 'giảng viên 2', 'Physics', 'Lê Quang Hoàng', 5, 4, 3, 5, 4, 5, 3, 4, 5, 4, '2024-12-20 03:22:50'),
-(5, 'giảng viên 3', 'Physics', 'Trần Đức Phát', 5, 4, 3, 5, 4, 5, 3, 4, 5, 4, '2024-12-20 03:22:50'),
-(6, 'giảng viên 2', 'Calculus', 'Nguyễn Văn Huy', 5, 4, 3, 5, 4, 5, 3, 4, 5, 4, '2024-12-20 03:22:50'),
-(7, 'giảng viên 3', 'English', 'Lê Quang Hoàng', 5, 4, 3, 5, 4, 5, 3, 4, 5, 4, '2024-12-20 03:22:50'),
-(8, 'giảng viên 3', 'English', 'Nguyễn Văn Huy', 5, 4, 3, 5, 4, 5, 3, 4, 5, 4, '2024-12-20 03:22:50'),
-(9, 'giảng viên 1', 'Calculus', 'Trần Đức Phát', 3, 2, 1, 4, 5, 3, 2, 5, 4, 5, '2024-12-20 03:22:50');
-
 -- --------------------------------------------------------
 
 --
@@ -118,7 +105,7 @@ INSERT INTO `student` (`id`, `full_name`, `username`, `password`, `created_at`) 
 CREATE TABLE `teacher` (
   `id` int(11) NOT NULL,
   `full_name` varchar(100) NOT NULL,
-  `subject` set('Calculus','Physics','English') DEFAULT 'Calculus',
+  `subject` set('Giải tích','Vật Lí','Anh Văn') DEFAULT 'Giải tích',
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
@@ -129,9 +116,9 @@ CREATE TABLE `teacher` (
 --
 
 INSERT INTO `teacher` (`id`, `full_name`, `subject`, `username`, `password`, `created_at`) VALUES
-(1, 'giảng viên 1', 'Calculus', 'giangvien1', 'giangvien1', '2024-12-19 02:41:56'),
-(2, 'giảng viên 2', 'Calculus,Physics', 'giangvien2', 'giangvien2', '2024-12-19 02:44:11'),
-(3, 'giảng viên 3', 'Calculus,Physics,English', 'giangvien3', 'giangvien3', '2024-12-19 03:08:18');
+(1, 'Giảng Viên 1', 'Giải tích', 'giangvien1', 'giangvien1', '2024-12-19 02:41:56'),
+(2, 'Giảng Viên 2', 'Giải tích,Vật Lí', 'giangvien2', 'giangvien2', '2024-12-19 02:44:11'),
+(3, 'Giảng Viên 3', 'Giải tích,Vật Lí,Anh Văn', 'giangvien3', 'giangvien3', '2024-12-19 03:08:18');
 
 --
 -- Indexes for dumped tables
@@ -148,7 +135,6 @@ ALTER TABLE `question`
 --
 ALTER TABLE `result`
   ADD PRIMARY KEY (`id`);
---  ADD UNIQUE KEY `ten_giang_vien` (`ten_giang_vien`);
 
 --
 -- Indexes for table `student`

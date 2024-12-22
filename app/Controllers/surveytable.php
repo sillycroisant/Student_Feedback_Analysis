@@ -37,7 +37,7 @@ $resultData = [];
 
 if ($checkResult > 0) {
     // Nếu đã đánh giá rồi, thông báo
-    $success_message = "Bạn đã đánh giá học phần này rồi. Hãy";
+    $success_message = "Bạn đã đánh giá học phần này rồi. ";
     $formSubmitted = true;
      // Nếu đã đánh giá, lấy dữ liệu đánh giá từ bảng 'result'
     $fetchResultQuery = "SELECT cau_hoi_1, cau_hoi_2, cau_hoi_3, cau_hoi_4, cau_hoi_5, cau_hoi_6, cau_hoi_7, cau_hoi_8, cau_hoi_9, cau_hoi_10 
@@ -105,7 +105,7 @@ if ($checkResult > 0) {
 
         // Thực thi câu lệnh
         if ($stmt->execute()) {
-            $success_message = "Đánh giá của bạn đã được gửi thành công! Hãy";
+            $success_message = "Đánh giá của bạn đã được gửi thành công! ";
             $formSubmitted = true;
         } else {
             $error_message = "Có lỗi xảy ra trong quá trình gửi đánh giá.";
@@ -181,27 +181,27 @@ if ($checkResult > 0) {
       <p class= "ques" ><strong>Câu hỏi <?php echo $index; ?>:</strong> <?php echo htmlspecialchars($question); ?></p>
       <div class="options">
         <label class="option-<?php echo $value; ?>">
-          <input type="radio" name="q<?php echo $index; ?>" value="5" 
+          <input type="radio" name="q<?php echo $index; ?>" value="5" required
                  <?php echo $value == 5 ? 'checked' : ''; ?>> Rất đồng ý
         </label><br>
 
         <label class="<?php echo $value == 4 ? 'bold-label' : ''; ?>">
-          <input type="radio" name="q<?php echo $index; ?>" value="4" 
+          <input type="radio" name="q<?php echo $index; ?>" value="4" required
                  <?php echo $value == 4 ? 'checked' : ''; ?>> Đồng ý
         </label><br>
 
         <label class="<?php echo $value == 3 ? 'bold-label' : ''; ?>">
-          <input type="radio" name="q<?php echo $index; ?>" value="3" 
+          <input type="radio" name="q<?php echo $index; ?>" value="3" required
                  <?php echo $value == 3 ? 'checked' : ''; ?>> Đồng ý một phần
         </label><br>
 
         <label class="<?php echo $value == 2 ? 'bold-label' : ''; ?>">
-          <input type="radio" name="q<?php echo $index; ?>" value="2" 
+          <input type="radio" name="q<?php echo $index; ?>" value="2" required
                  <?php echo $value == 2 ? 'checked' : ''; ?>> Không đồng ý
         </label><br>
 
         <label class="<?php echo $value == 1 ? 'bold-label' : ''; ?>">
-          <input type="radio" name="q<?php echo $index; ?>" value="1" 
+          <input type="radio" name="q<?php echo $index; ?>" value="1" required
                  <?php echo $value == 1 ? 'checked' : ''; ?>> Rất không đồng ý
         </label><br>
       </div>
