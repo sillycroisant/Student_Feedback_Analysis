@@ -23,14 +23,12 @@ project/
 │   ├── Models      
 │   ├── Views       
 │   ├── Controllers 
-├── database/       # Cơ sở dữ liệu
-├── fonts/          # Format của project (Font chữ, icon, ...)
+├── database/       # Cơ sở dữ liệu        
 ├── public/         # Tệp công khai (index.html, CSS, JS, hình ảnh,...)
-│   ├── index.html  
-│   ├── css         
-│   ├── js          
+│   ├── fonts       # Format của project (Font chữ, icon, ...)       
 │   ├── images      
 ├── resources/      # Chứa tài nguyên hoặc các thư viện,...
+├── index.html 
 └── README.md       # Hướng dẫn chi tiết
 ...
 ```
