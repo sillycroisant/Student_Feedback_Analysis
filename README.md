@@ -4,33 +4,40 @@
 ---
 
 ## Yêu cầu hệ thống
+1. Cài đặt VS Code.
+2. Cài đặt XAMPP để sử dụng cơ sở dữ liệu.
+3. Cài đặt ngrok để tạo đường dẫn trên Internet tới dự án.
 
 ## Hướng dẫn cài đặt
-1. **git clone https://github.com/Hoang159/Student_Feedback_Analysis.git**
-2. Code thêm, thay đổi thư mục,... (Mỗi người mỗi thư mục khác nhau khỏi chia nhánh trên git và tránh xung đột )
-3. Sau đó mở git bash ở thư mục chính student_feedback_analysis hoặc mở terminal git bash trong vscode rồi gõ các lệnh sau 
+1. **Fork** dự án từ link: **https://github.com/Hoang159/Student_Feedback_Analysis**
+2. Vào phần dự án của bạn và **git clone** dự án bạn vừa fork về.
+(Dự án chính Master, tôi là master - Dự án fork về Branch, bạn là master)
+3. Code thêm, thay đổi thư mục,...
+4. Sau đó mở **git bash** ở thư mục chính (Digital_Signature_Management) hoặc mở **terminal git bash** trong vscode rồi gõ các lệnh sau: 
 **git add .** (dấu chấm để add tất cả)
-**git commit -m"mô tả thay đổi"** (hình như bắt buộc phải điền mô tả thay đổi, để trống không được đâu)
+**git commit -m"mô tả thay đổi"** (bắt buộc có mô tả)
 **git push origin master** (đẩy lên github)
-4. Còn muốn lấy những thay đổi về máy mình thì gõ lệnh **git pull origin master**
+Lúc này các thay đổi sẽ được đẩy lên Branch
+5. Muốn gửi commit vào Master thì nhấn **Contribute** thì sẽ thành Pull Request và chờ duyệt
+Muốn đồng bộ code đã có thay đổi từ Master về Branch thì có **Sync Fork**
+6. Còn muốn lấy những thay đổi từ Branch sau khi Sync Fork thì gõ lệnh **git pull origin master**
 
-Lưu ý: Các file test.txt thêm vào để đẩy những folder trống lên được github, khi code thì có thể xóa. Trước khi code có thể clone về rồi thử thay đổi và làm các bước như trên để xem cách hoạt động.
+Lưu ý: Các file test.txt thêm vào để đẩy những folder trống lên được github, khi code thì có thể xóa. 
+Trước khi code có thể clone về rồi thử thay đổi và làm các bước như trên để xem cách hoạt động. 
+Nếu xảy ra xung đột thì bên Branch phải sửa cho phù hợp trước rồi Contribute qua. Bên Master sẽ đọc và xem xét để Merge.
 
 ## Danh sách thư mục
 ```
 project/
-├── app/            # Chứa logic ứng dụng (Models, Views, Controllers, ...)
+├── app/            # Chứa logic ứng dụng theo mô hình MVC (Models, Views, Controllers, ...)
 │   ├── Models      
 │   ├── Views       
 │   ├── Controllers 
-├── database/       # Cơ sở dữ liệu
-├── fonts/          # Format của project (Font chữ, icon, ...)
-├── public/         # Tệp công khai (index.html, CSS, JS, hình ảnh,...)
-│   ├── index.html  
-│   ├── css         
-│   ├── js          
+├── database/       # Cơ sở dữ liệu        
+├── public/         # Tệp công khai (hình ảnh, font chữ, ...)
+│   ├── fonts              
 │   ├── images      
-├── resources/      # Chứa tài nguyên hoặc các thư viện,...
+├── resources/      # Chứa tài liệu hoặc các thư viện,...
+├── index.html      # Trang chính của dự án
 └── README.md       # Hướng dẫn chi tiết
-...
 ```
