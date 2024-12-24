@@ -1,0 +1,16 @@
+I. Hướng dẫn chạy dự án
+    1. Có thể git clone dự án theo file README.md hoặc tải trực tiếp về. (git clone https://github.com/Hoang159/Student_Feedback_Analysis)
+    2. Cài đặt XAMPP, bật Apache và MySQL.
+    3. Vào localhost/phpmyadmin để vào cơ sở dữ liệu.
+    4. Bấm New tạo database mới, nhập tên student_feedback_analysis.
+    5. Import file student_feedback_analysis.sql trong thư mục database.
+    6. Mở file index.html, chạy localhost và sẽ sử dụng được web.
+
+II. Thông tin tài khoản
+    1. Tài khoản dành cho sinh viên (TK-MK):  106210214 - lequanghoang
+                                              106210218 - nguyenvanhuy
+                                              106210225 - tranducphat
+    2. Tài khoản dành cho giảng viên (TK-MK): giangvien1 - giangvien1
+                                              giangvien2 - giangvien2
+                                              giangvien3 - giangvien3
+                                              
