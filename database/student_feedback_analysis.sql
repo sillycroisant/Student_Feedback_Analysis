@@ -9,7 +9,7 @@
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
-SET time_zone = "+00:00";
+SET time_zone = "+07:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -92,9 +92,9 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`id`, `full_name`, `username`, `password`, `created_at`) VALUES
-(1, 'Trần Đức Phát', 'tranducphat', 'tranducphat', '2024-12-19 03:13:49'),
-(2, 'Lê Quang Hoàng', 'lequanghoang', 'lequanghoang', '2024-12-19 03:16:26'),
-(3, 'Nguyễn Văn Huy', 'nguyenvanhuy', 'nguyenvanhuy', '2024-12-19 03:16:26');
+(1, 'Trần Đức Phát', '106210225', 'tranducphat', '2024-12-19 03:13:49'),
+(2, 'Lê Quang Hoàng', '106210214', 'lequanghoang', '2024-12-19 03:16:26'),
+(3, 'Nguyễn Văn Huy', '106210218', 'nguyenvanhuy', '2024-12-19 03:16:26');
 
 -- --------------------------------------------------------
 
